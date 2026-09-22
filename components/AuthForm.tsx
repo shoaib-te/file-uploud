@@ -152,7 +152,7 @@ function AuthForm({ type }: { type: AuthType }) {
           </>
         ) : (
           <>
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/sign-up" className="text-[#FF6B6B] font-medium hover:underline">
               Sign Up
             </Link>

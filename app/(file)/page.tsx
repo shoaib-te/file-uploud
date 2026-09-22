@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboardStats, fetchFiles } from '@/features/fileSlice';
 import type { AppDispatch, RootState } from '@/lib/store';
+import { motion } from 'framer-motion';
 
 export default function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
@@ -50,7 +51,12 @@ export default function Dashboard() {
       <section className="flex flex-col gap-6 lg:col-span-7">
         
         {/* Available Storage Main Banner */}
-        <div className="flex items-center justify-between rounded-3xl bg-[#FF6B6B] p-8 text-white shadow-xl shadow-red-100">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="flex items-center justify-between rounded-3xl bg-[#FF6B6B] p-8 text-white shadow-xl shadow-red-100"
+        >
           <div className="flex flex-col gap-1">
             <h2 className="text-xl font-bold">Available Storage</h2>
             <p className="text-sm font-medium opacity-90">
@@ -69,28 +75,38 @@ export default function Dashboard() {
               <p className="text-[10px] font-medium opacity-80">Space used</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Category Cards Workspace Grid */}
-        <div className="grid grid-cols-1  sm:grid-cols-2">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2"
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
+        >
           
         <StorageCard title="Documents" storageUsed={category('document')?.size || '0 KB'} updateTime={updatedAt} />
         <StorageCard title="Images" storageUsed={category('image')?.size || '0 KB'} updateTime={updatedAt} iconSrc="/jpeg.png" />
         <StorageCard title="Media" storageUsed={category('media')?.size || '0 KB'} updateTime={updatedAt} iconSrc="/mp4.png" />
         <StorageCard title="Others" storageUsed={category('other')?.size || '0 KB'} updateTime={updatedAt} />
 
-        </div>
+        </motion.div>
       </section>
 
       {/* RIGHT COLUMN: Recent Files Uploaded Panel */}
-      <section className="rounded-3xl bg-white p-6 shadow-sm border border-gray-50 lg:col-span-5 flex flex-col gap-6">
+      <motion.section
+        initial={{ opacity: 0, x: 16 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, delay: 0.15, ease: 'easeOut' }}
+        className="rounded-3xl bg-white p-6 shadow-sm border border-gray-50 lg:col-span-5 flex flex-col gap-6"
+      >
         <h2 className="text-lg font-bold text-gray-800">Recent files uploaded</h2>
         
         {/* Dynamic File List mapping */}
-        <div className="flex flex-col gap-4 overflow-y-auto max-h-[660px] pr-1">
+        <motion.div className="flex flex-col gap-4 overflow-y-auto max-h-[660px] pr-1" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.05 } } }}>
           {!recentFiles.length && <p className="text-sm text-gray-500">No files uploaded yet.</p>}
           {recentFiles.map((file, idx) => (
-            <div key={`${file.name}-${idx}`} className="flex items-center justify-between group hover:bg-gray-50 p-2 rounded-2xl transition-colors">
+            <motion.div key={`${file.name}-${idx}`} variants={{ hidden: { opacity: 0, x: 10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center justify-between group hover:bg-gray-50 p-2 rounded-2xl transition-colors">
               <div className="flex items-center gap-4">
                 <div className={`flex h-11 w-11 items-center justify-center rounded-full overflow-hidden ${file.color}`}>
                   {file.type === 'document' && (
@@ -114,10 +130,10 @@ export default function Dashboard() {
               </div>
 
               <FileOptions file={file} />
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
     </main>
   )

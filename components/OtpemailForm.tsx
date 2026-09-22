@@ -99,7 +99,7 @@ function OtpemailForm({ email = "adrian@jsmastery.pro", OpenOtp, setOpenOtp }: O
             Enter OTP
           </AlertDialogTitle>
           <AlertDialogDescription className="text-xs text-slate-500 max-w-[320px] mx-auto text-center">
-            We've sent a code to <span className="font-semibold text-brand-primary">{email}</span>
+            We&apos;ve sent a code to <span className="font-semibold text-brand-primary">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -140,7 +140,7 @@ function OtpemailForm({ email = "adrian@jsmastery.pro", OpenOtp, setOpenOtp }: O
 
           {/* Resend Link */}
           <p className="text-xs text-slate-500 text-center w-full">
-            Didn't get a code?{" "}
+            Didn&apos;t get a code?{" "}
             <button 
               type="button" 
               disabled={loading}

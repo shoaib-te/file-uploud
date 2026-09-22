@@ -1,31 +1,17 @@
 "use client"
 
-import React, { FormEvent, useRef, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { useDispatch, useSelector } from 'react-redux'
-import { uploadFile } from '@/features/fileSlice'
+import { useDispatch } from 'react-redux'
 import { logoutUser } from '@/features/userSlice'
-import type { AppDispatch, RootState } from '@/lib/store'
+import type { AppDispatch } from '@/lib/store'
+import { LogOut, Search, Upload } from 'lucide-react'
 
 function Navbar() {
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const router = useRouter()
   const pathname = usePathname()
   const [search, setSearch] = useState('')
   const dispatch = useDispatch<AppDispatch>()
-  const { loading, error } = useSelector((state: RootState) => state.file)
-
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-
-    if (!file) return
-
-    await dispatch(uploadFile(file))
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
-  }
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -39,9 +25,7 @@ function Navbar() {
       {/* Middle Section: Search Bar */}
       <form onSubmit={handleSearch} className="relative w-full max-w-xl px-4">
         <span className="absolute inset-y-0 left-8 flex items-center text-gray-400">
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+          <Search className="h-5 w-5" aria-hidden="true" />
         </span>
         <input
           type="text" 
@@ -54,27 +38,15 @@ function Navbar() {
 
       {/* Right Section: Action Buttons */}
       <div className="flex items-center gap-4">
-        <input
-          ref={fileInputRef}
-          type="file"
-          hidden
-          onChange={handleUpload}
-        />
-
         {/* Upload Button */}
         <button
           type="button"
-          onClick={() => fileInputRef.current?.click()}
-          disabled={loading}
+          onClick={() => router.push('/upload')}
           className="flex items-center gap-2 rounded-full bg-[#FF6B6B] px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-100 hover:bg-[#ff5252] transition-colors"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-          </svg>
-          {loading ? 'Uploading...' : 'Upload'}
+          <Upload className="h-4 w-4" aria-hidden="true" />
+          Upload
         </button>
-
-        {error && <span className="max-w-40 text-xs text-red-500">{error}</span>}
 
         {/* Logout / Exit Icon Button */}
         <button
@@ -86,9 +58,7 @@ function Navbar() {
           className="rounded-xl p-2 text-[#FF6B6B] hover:bg-red-50 transition-colors"
           aria-label="Sign out"
         >
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
+          <LogOut className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
     </header>

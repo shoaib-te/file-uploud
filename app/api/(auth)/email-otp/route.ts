@@ -77,16 +77,18 @@ export async function POST(req: Request) {
 
         return response;
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("OTP Verification Error:", error);
-        
+        const message = error instanceof Error ? error.message : "Internal Server Error";
+        const errorName = error instanceof Error ? error.name : "";
+
         // Handle explicit JWT expiration/malformed errors gracefully
-        if (error.name === "TokenExpiredError" || error.name === "JsonWebTokenError") {
+        if (errorName === "TokenExpiredError" || errorName === "JsonWebTokenError") {
             return NextResponse.json({ error: "Unauthorized: Token is invalid or expired" }, { status: 401 });
         }
 
         return NextResponse.json(
-            { error: error.message || "Internal Server Error" }, 
+            { error: message }, 
             { status: 500 }
         );
     }

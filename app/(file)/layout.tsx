@@ -2,6 +2,8 @@ import Navbar from '@/components/Navbar'
 import NavItem from '@/components/NavItem'
 import Image from 'next/image'
 import React from 'react'
+import { File, Film, FolderOpen, Images, LayoutDashboard, Upload, UserRound } from 'lucide-react'
+import PageTransition from '@/components/PageTransition'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,47 +28,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <NavItem
               label="Dashboard"
               href="/"
-              icon={
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
-                </svg>
-              }
+                icon={<LayoutDashboard className="h-5 w-5" aria-hidden="true" />}
             />
             <NavItem
               label="Documents"
               href="/Documents"
-              icon={
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                </svg>
-              }
+                icon={<File className="h-5 w-5" aria-hidden="true" />}
             />
             <NavItem
               label="Images"
               href="/Images"
-              icon={
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a1 1 0 011.414 0L16 17m0 0l2.586-2.586a1 1 0 011.414 0L22 17V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12zm6-9a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              }
+                icon={<Images className="h-5 w-5" aria-hidden="true" />}
             />
             <NavItem
               label="Media"
               href="/Media"
-              icon={
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              }
+                icon={<Film className="h-5 w-5" aria-hidden="true" />}
             />
             <NavItem
               label="Others"
               href="/Others"
-              icon={
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2H3a2 2 0 01-2-2V4a2 2 0 012-2h6a2 2 0 012 2v1zM11 13a2 2 0 114 0v1a2 2 0 01-2 2H3a2 2 0 01-2-2v-1a2 2 0 012-2h6a2 2 0 012 2v1z" />
-                </svg>
-              }
+                icon={<FolderOpen className="h-5 w-5" aria-hidden="true" />}
+            />
+            <NavItem
+              label="Upload"
+              href="/upload"
+                icon={<Upload className="h-5 w-5" aria-hidden="true" />}
+            />
+            <NavItem
+              label="Profile"
+              href="/profile"
+                icon={<UserRound className="h-5 w-5" aria-hidden="true" />}
             />
           </nav>
         </div>
@@ -91,9 +83,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Navbar />
 
         {/* Dynamic Scrollable Page Content Frame */}
-        <main className="flex-1 overflow-y-auto p-8">
-          {children}
-        </main>
+        <PageTransition>{children}</PageTransition>
       </div>
 
     </div>

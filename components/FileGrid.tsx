@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 import FileOptions from '@/components/FileOptions'
 import { fetchFiles, type FileItem, type FileType } from '@/features/fileSlice'
 import type { AppDispatch, RootState } from '@/lib/store'
@@ -56,9 +57,20 @@ export default function FileGrid({ category, title }: FileGridProps) {
         <p className="text-sm text-gray-500">No {title.toLowerCase()} uploaded yet.</p>
       )}
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <motion.div
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        initial="hidden"
+        animate="visible"
+        variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+      >
         {categoryFiles.map((file) => (
-          <article key={file._id} className="group flex h-[175px] flex-col justify-between rounded-3xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+          <motion.article
+            key={file._id}
+            variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            className="group flex h-[175px] flex-col justify-between rounded-3xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md"
+          >
             <div className="flex items-start justify-between">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF0F0]">
                 <Image src={iconForType(file.type)} alt={`${file.type} icon`} width={32} height={32} unoptimized className="h-8 w-auto object-contain" />
@@ -72,9 +84,9 @@ export default function FileGrid({ category, title }: FileGridProps) {
               <h2 className="mb-1 line-clamp-1 text-sm font-bold text-[#212529]" title={file.name}>{file.name}</h2>
               <p className="text-[11px] font-semibold text-[#A3AED0]">{file.createdAt ? new Date(file.createdAt).toLocaleString() : 'Recently uploaded'}</p>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }
