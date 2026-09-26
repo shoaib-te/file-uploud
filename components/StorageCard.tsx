@@ -15,7 +15,7 @@ export default function StorageCard({
   updateTime = "10:15am, 10 Oct"
 }: StorageCardProps) {
   return (
-    <div className="relative h-[233px] w-[226px] bg-transparent font-sans">
+    <div className="relative h-[233px] min-w-0 w-full bg-transparent font-sans">
       
       {/* 1. THE MAIN BACKGROUND CONTAINER WITH CUSTOM TOP CURVE OUTLINE */}
       <div className="absolute bottom-0 left-0 right-0 top-[40px] flex flex-col justify-between rounded-3xl bg-white p-5 pt-8 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.03)] border border-gray-50">

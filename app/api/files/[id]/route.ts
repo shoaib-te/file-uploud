@@ -15,7 +15,8 @@ interface JwtPayload {
 }
 
 async function getOwnerId() {
-  const token = (await cookies()).get("token")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("app_session")?.value || cookieStore.get("token")?.value;
   if (!token) return null;
 
   try {

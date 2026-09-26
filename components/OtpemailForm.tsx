@@ -81,7 +81,7 @@ function OtpemailForm({ email = "adrian@jsmastery.pro", OpenOtp, setOpenOtp }: O
         The 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' alignment utilities 
         guarantee the dialog content sits perfectly in the middle of the viewport.
       */}
-      <AlertDialogContent className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 max-w-[460px] w-full p-8 rounded-2xl bg-white border-none shadow-xl flex flex-col items-center justify-center text-center">
+      <AlertDialogContent className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border-none bg-white p-4 text-center shadow-xl sm:p-8">
         
         {/* Close "X" Cross Icon Button */}
         <button
@@ -112,13 +112,13 @@ function OtpemailForm({ email = "adrian@jsmastery.pro", OpenOtp, setOpenOtp }: O
             onChange={(value: string) => setOtp(value)}
           >
             {/* 'justify-center' added here to center the 6 slots inside the card */}
-            <InputOTPGroup className="gap-2 w-full justify-center">
-              <InputOTPSlot index={0} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
-              <InputOTPSlot index={1} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
-              <InputOTPSlot index={2} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
-              <InputOTPSlot index={3} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
-              <InputOTPSlot index={4} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
-              <InputOTPSlot index={5} className="w-12 h-14 text-xl font-semibold border-2 rounded-xl text-coral-500 border-coral-200 focus-visible:ring-coral-400" />
+            <InputOTPGroup className="w-full justify-center gap-1 sm:gap-2">
+              <InputOTPSlot index={0} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
+              <InputOTPSlot index={1} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
+              <InputOTPSlot index={2} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
+              <InputOTPSlot index={3} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
+              <InputOTPSlot index={4} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
+              <InputOTPSlot index={5} className="h-11 w-9 rounded-xl border-2 border-coral-200 text-lg font-semibold text-coral-500 focus-visible:ring-coral-400 sm:h-14 sm:w-12 sm:text-xl" />
             </InputOTPGroup>
           </InputOTP>
 

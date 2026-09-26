@@ -45,7 +45,7 @@ export default function Dashboard() {
   }));
 
   return (
-    <main className="grid w-full h-screen grid-cols-1 gap-5 bg-gray-50 p-5 rounded-2xl lg:grid-cols-12">
+    <main className="grid min-h-full w-full grid-cols-1 gap-5 rounded-2xl bg-gray-50 p-3 sm:p-5 lg:grid-cols-12">
       
       {/* LEFT COLUMN: Storage Overview & Category Grid */}
       <section className="flex flex-col gap-6 lg:col-span-7">
@@ -55,7 +55,7 @@ export default function Dashboard() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="flex items-center justify-between rounded-3xl bg-[#FF6B6B] p-8 text-white shadow-xl shadow-red-100"
+          className="flex items-center justify-between rounded-3xl bg-[#FF6B6B] p-5 text-white shadow-xl shadow-red-100 sm:p-8"
         >
           <div className="flex flex-col gap-1">
             <h2 className="text-xl font-bold">Available Storage</h2>
@@ -65,7 +65,7 @@ export default function Dashboard() {
           </div>
           
           {/* Progress Circular Dial Ring */}
-          <div className="relative flex h-28 w-28 items-center justify-center">
+          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center sm:h-28 sm:w-28">
             <svg className="h-full w-full transform -rotate-90" viewBox="0 0 36 36">
               <path className="text-white/20" strokeWidth="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
               <path className="text-white" strokeWidth="3.5" strokeDasharray={`${dashboard?.usedPercentage || 0}, 100`} strokeLinecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
@@ -107,7 +107,7 @@ export default function Dashboard() {
           {!recentFiles.length && <p className="text-sm text-gray-500">No files uploaded yet.</p>}
           {recentFiles.map((file, idx) => (
             <motion.div key={`${file.name}-${idx}`} variants={{ hidden: { opacity: 0, x: 10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center justify-between group hover:bg-gray-50 p-2 rounded-2xl transition-colors">
-              <div className="flex items-center gap-4">
+              <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                 <div className={`flex h-11 w-11 items-center justify-center rounded-full overflow-hidden ${file.color}`}>
                   {file.type === 'document' && (
                     <Image src="/file.png" alt="Document icon" width={24} height={24} unoptimized className="object-contain w-auto" />
@@ -123,7 +123,7 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex min-w-0 flex-col">
                   <span className="text-sm font-semibold text-gray-800 line-clamp-1">{file.name}</span>
                   <span className="text-xs text-gray-400 mt-0.5">{file.time}</span>
                 </div>

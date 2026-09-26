@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import NavItem from '@/components/NavItem'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { File, Film, FolderOpen, Images, LayoutDashboard, Upload, UserRound } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
@@ -11,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="flex h-screen w-full overflow-hidden bg-[#ffffff]">
       
       {/* 1. LEFT SIDEBAR PANEL */}
-      <aside className="flex h-screen w-72 flex-col justify-between   bg-white p-6 shrink-0">
+      <aside className="hidden h-screen w-72 shrink-0 flex-col justify-between bg-white p-6 md:flex">
         {/* Top Section: Logo & Navigation */}
         <div className="flex flex-col gap-8">
           {/* Brand Logo */}
@@ -85,6 +86,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {/* Dynamic Scrollable Page Content Frame */}
         <PageTransition>{children}</PageTransition>
       </div>
+
+      <nav className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-around border-t border-gray-100 bg-white/95 px-2 py-2 shadow-[0_-8px_24px_rgba(33,37,41,0.08)] backdrop-blur md:hidden" aria-label="Mobile navigation">
+        {[
+          { href: '/', label: 'Home', icon: <LayoutDashboard className="h-5 w-5" aria-hidden="true" /> },
+          { href: '/Documents', label: 'Docs', icon: <File className="h-5 w-5" aria-hidden="true" /> },
+          { href: '/Images', label: 'Images', icon: <Images className="h-5 w-5" aria-hidden="true" /> },
+          { href: '/upload', label: 'Upload', icon: <Upload className="h-5 w-5" aria-hidden="true" /> },
+          { href: '/profile', label: 'Profile', icon: <UserRound className="h-5 w-5" aria-hidden="true" /> },
+        ].map((item) => (
+          <Link key={item.href} href={item.href} className="flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1 py-1.5 text-[10px] font-semibold text-gray-500 transition-colors hover:bg-[#FFF5F5] hover:text-[#FF6B6B]">
+            {item.icon}
+            <span>{item.label}</span>
+          </Link>
+        ))}
+      </nav>
 
     </div>
   )

@@ -33,21 +33,23 @@ function layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Bottom Section: Decorative Illustrations */}
-        <div className="relative flex h-52 w-full items-end justify-center">
+        <div className="relative flex h-52 w-full items-end justify-center sm:h-64 lg:h-80">
           <Image
             src="/files.svg"
-            alt="file Picture "
-            width={500}
-            height={500}
+            alt="File storage illustration"
+            fill
+            sizes="(max-width: 1024px) 33vw, 500px"
             loading="eager"
+            unoptimized
+            className="object-contain object-bottom"
           />
 
         </div>
 
       </section>
-      <section className="flex  flex-1 h-screen   w-2/3 flex-col items-center justify-center bg-[#ffffff] p-8">
+      <section className="flex min-h-screen w-full flex-1 flex-col items-center justify-center bg-[#ffffff] p-4 sm:p-8 md:h-screen md:w-2/3">
         <div className="flex  md:hidden flex-col items-center justify-center gap-4">
-          <div className="flex items-center gap-3 p-8 select-none">
+          <div className="flex items-center gap-3 p-4 select-none sm:p-8">
             {/* Dynamic Overlapping Logo Mark */}
             <div className="relative h-12 w-12 flex-shrink-0">
 

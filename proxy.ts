@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const publicPaths = ['/sign-in', '/sign-up'];
@@ -14,7 +15,18 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const hasSession = Boolean(request.cookies.get('app_session')?.value);
+  const sessionToken = request.cookies.get('app_session')?.value;
+  let hasSession = false;
+
+  if (sessionToken) {
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      await jwtVerify(sessionToken, secret);
+      hasSession = true;
+    } catch {
+      hasSession = false;
+    }
+  }
 
   if (!hasSession) {
     return NextResponse.redirect(new URL('/sign-in', request.url));

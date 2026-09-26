@@ -43,10 +43,10 @@ export default function FileGrid({ category, title }: FileGridProps) {
   }, [dispatch, files.length])
 
   return (
-    <section className="min-h-full w-full rounded-3xl border border-gray-100 bg-white p-8 shadow-sm">
+    <section className="min-h-full w-full rounded-3xl border border-gray-100 bg-white p-4 shadow-sm sm:p-8">
       <div className="mb-8 flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-[#212529]">{title}</h1>
+          <h1 className="text-2xl font-extrabold text-[#212529] sm:text-3xl">{title}</h1>
           <p className="mt-2 text-sm font-semibold text-gray-500">{categoryFiles.length} files</p>
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function FileGrid({ category, title }: FileGridProps) {
             variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="group flex h-[175px] flex-col justify-between rounded-3xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md"
+            className="group flex h-[175px] min-w-0 flex-col justify-between rounded-3xl border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-md sm:p-5"
           >
             <div className="flex items-start justify-between">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF0F0]">

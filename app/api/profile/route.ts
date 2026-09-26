@@ -10,7 +10,7 @@ interface JwtPayload {
 }
 
 function getUserId(request: NextRequest) {
-  const token = request.cookies.get('token')?.value
+  const token = request.cookies.get('app_session')?.value || request.cookies.get('token')?.value
   if (!token) return null
 
   try {

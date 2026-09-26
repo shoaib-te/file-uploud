@@ -80,7 +80,7 @@ function AuthForm({ type }: { type: AuthType }) {
   }
 
   return (
-    <div className="w-full max-w-[400px] mx-auto p-6 flex flex-col items-center">
+    <div className="mx-auto flex w-full max-w-[400px] flex-col items-center p-4 sm:p-6">
       <h1 className="text-3xl font-extrabold text-[#2D3142] mb-8 tracking-tight">
         {type === 'sign-up' ? 'Sign Up' : 'Sign In'}
       </h1>

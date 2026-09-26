@@ -30,11 +30,11 @@ export default function SearchPage() {
   })
 
   return (
-    <section className="min-h-full w-full rounded-3xl border border-gray-100 bg-white p-8 shadow-sm">
+    <section className="min-h-full w-full rounded-3xl border border-gray-100 bg-white p-4 shadow-sm sm:p-8">
       <div className="mb-8 flex items-center gap-3">
         <Search className="h-6 w-6 text-[#FF6B6B]" />
         <div>
-          <h1 className="text-3xl font-extrabold text-[#212529]">Search files</h1>
+          <h1 className="text-2xl font-extrabold text-[#212529] sm:text-3xl">Search files</h1>
           <p className="mt-2 text-sm text-gray-500">
             {query ? `${results.length} result${results.length === 1 ? '' : 's'} for "${query}"` : `${files.length} files`}
           </p>

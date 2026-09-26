@@ -34,7 +34,8 @@ function getCategory(type?: string): Category {
 
 export async function GET() {
   try {
-    const token = (await cookies()).get("token")?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get("app_session")?.value || cookieStore.get("token")?.value;
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

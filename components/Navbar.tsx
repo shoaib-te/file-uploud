@@ -20,11 +20,11 @@ function Navbar() {
   }
 
   return (
-    <header className="flex w-full  items-center justify-between bg-white px-8 py-4">
+    <header className="flex w-full items-center justify-between gap-3 bg-white px-4 py-3 md:px-8 md:py-4">
     
       {/* Middle Section: Search Bar */}
-      <form onSubmit={handleSearch} className="relative w-full max-w-xl px-4">
-        <span className="absolute inset-y-0 left-8 flex items-center text-gray-400">
+      <form onSubmit={handleSearch} className="relative min-w-0 flex-1 max-w-xl md:px-4">
+        <span className="absolute inset-y-0 left-3 flex items-center text-gray-400 md:left-7">
           <Search className="h-5 w-5" aria-hidden="true" />
         </span>
         <input
@@ -32,20 +32,20 @@ function Navbar() {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder={pathname === '/search' ? 'Search your files' : 'Search files'}
-          className="w-full rounded-full bg-[#FAFAFA] py-3 pl-12 pr-6 text-sm font-medium text-gray-700 outline-none transition-all placeholder:text-gray-700 focus:bg-gray-100"
+          className="w-full rounded-full bg-[#FAFAFA] py-3 pl-10 pr-3 text-sm font-medium text-gray-700 outline-none transition-all placeholder:text-gray-700 focus:bg-gray-100 md:pr-6"
         />
       </form>
 
       {/* Right Section: Action Buttons */}
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-1.5 md:gap-4">
         {/* Upload Button */}
         <button
           type="button"
           onClick={() => router.push('/upload')}
-          className="flex items-center gap-2 rounded-full bg-[#FF6B6B] px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-100 hover:bg-[#ff5252] transition-colors"
+          className="flex items-center gap-2 rounded-full bg-[#FF6B6B] px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-100 transition-colors hover:bg-[#ff5252] md:px-6"
         >
           <Upload className="h-4 w-4" aria-hidden="true" />
-          Upload
+          <span className="hidden md:inline">Upload</span>
         </button>
 
         {/* Logout / Exit Icon Button */}
