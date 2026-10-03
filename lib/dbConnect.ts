@@ -20,11 +20,9 @@ if (!MONGODB_URI) {
  * in development. This prevents connections from growing exponentially.
  */
 const globalWithMongoose = globalThis as GlobalWithMongoose;
-let cached = globalWithMongoose.mongoose;
-
-if (!cached) {
-  cached = globalWithMongoose.mongoose = { conn: null, promise: null };
-}
+const cached =
+  globalWithMongoose.mongoose ??
+  (globalWithMongoose.mongoose = { conn: null, promise: null });
 
 async function dbConnect() {
   // If a connection already exists, return it

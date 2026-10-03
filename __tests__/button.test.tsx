@@ -6,6 +6,6 @@ describe("Button", () => {
   it("renders its label", () => {
     render(<Button>Save file</Button>)
 
-    expect(screen.getByRole("button", { name: "Save file" })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Save file" }).textContent).toBe("Save file")
   })
 })
