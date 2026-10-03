@@ -72,8 +72,12 @@ export default function FileGrid({ category, title }: FileGridProps) {
             className="group flex h-[175px] min-w-0 flex-col justify-between rounded-3xl border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-md sm:p-5"
           >
             <div className="flex items-start justify-between">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF0F0]">
-                <Image src={iconForType(file.type)} alt={`${file.type} icon`} width={32} height={32} unoptimized className="h-8 w-auto object-contain" />
+              <div className={`relative h-14 w-14 overflow-hidden ${file.type === 'image' ? 'rounded-xl' : 'flex items-center justify-center rounded-full bg-[#FFF0F0]'}`}>
+                {file.type === 'image' ? (
+                  <Image src={file.url} alt={file.name} fill unoptimized sizes="56px" className="object-cover" />
+                ) : (
+                  <Image src={iconForType(file.type)} alt={`${file.type} icon`} width={32} height={32} unoptimized className="h-8 w-auto object-contain" />
+                )}
               </div>
               <div className="text-right">
                 <FileOptions file={{ id: file._id, name: file.name, size: file.size, type: file.type, extension: file.extension, url: file.url, date: file.createdAt ? new Date(file.createdAt).toLocaleString() : undefined }} />

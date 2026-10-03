@@ -108,17 +108,14 @@ export default function Dashboard() {
           {recentFiles.map((file, idx) => (
             <motion.div key={`${file.name}-${idx}`} variants={{ hidden: { opacity: 0, x: 10 }, visible: { opacity: 1, x: 0 } }} className="flex items-center justify-between group hover:bg-gray-50 p-2 rounded-2xl transition-colors">
               <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-                <div className={`flex h-11 w-11 items-center justify-center rounded-full overflow-hidden ${file.color}`}>
-                  {file.type === 'document' && (
+                <div className={`relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full ${file.color}`}>
+                  {file.type === 'image' ? (
+                    <Image src={file.url} alt={file.name} fill unoptimized sizes="44px" className="object-cover" />
+                  ) : file.type === 'document' ? (
                     <Image src="/file.png" alt="Document icon" width={24} height={24} unoptimized className="object-contain w-auto" />
-                  )}
-                  {file.type === 'image' && (
-                    <Image src="/jpeg.png" alt="Image icon" width={24} height={24} unoptimized className="object-contain w-auto" />
-                  )}
-                  {file.type === 'video' && (
+                  ) : file.type === 'video' ? (
                     <Image src="/mp4.png" alt="Video icon" width={24} height={24} unoptimized className="object-contain w-auto" />
-                  )}
-                  {(file.type === 'other' || file.type === 'audio') && (
+                  ) : (
                     <Image src="/file.png" alt="File icon" width={24} height={24} unoptimized className="object-contain w-auto" />
                   )}
                 </div>

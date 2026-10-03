@@ -66,6 +66,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Bottom Section: Footer Illustration Card */}
         <div className="relative mt-auto overflow-hidden rounded-2xl bg-[#FFF5F5] p-5 text-center flex flex-col items-center justify-center">
+          
           <Image 
             src="/files.svg" 
             alt="file Picture" 
